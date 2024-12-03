@@ -18,5 +18,12 @@ The idea originated from the need to optimize the use of parking spaces and redu
 # Software design
  - Development Environment: Arduino IDE.
  - Libraries and Third-Party Sources:
-    Servo.h for controlling the servo motor.
-    LiquidCrystal_I2C.h for controlling the LCD.
+    - Servo.h for controlling the servo motor.
+    - LiquidCrystal_I2C.h for controlling the LCD.
+
+# Results
+-
+
+# Conclusions
+-
+
