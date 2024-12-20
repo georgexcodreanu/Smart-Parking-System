@@ -83,7 +83,14 @@ The system is built using an Arduino UNO, which processes input signals from sen
        - Outer Pins → VCC and GND
       
   # Circuit:
-  ![circuit](https://github.com/user-attachments/assets/1fb8157d-e123-4677-a5db-7948cd9e1d5b)
+  ![circuit2](https://github.com/user-attachments/assets/2055fbf0-3f5b-4264-88a5-06d4c0e81ecc)
+  ![fizic1](https://github.com/user-attachments/assets/c6f4c356-8214-4f57-b3f9-76f8f2d82541)
+  ![hardware](https://github.com/user-attachments/assets/d33cf7d9-a5bb-46db-a74d-28ed6b2ee3d0)
+  ![hardware2](https://github.com/user-attachments/assets/02c327a1-f703-4692-a297-cd52c21e8635)
+
+
+
+
 
 
 # Software design
