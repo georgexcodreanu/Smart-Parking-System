@@ -84,9 +84,9 @@ The system is built using an Arduino UNO, which processes input signals from sen
       
   # Circuit:
   ![circuit2](https://github.com/user-attachments/assets/2055fbf0-3f5b-4264-88a5-06d4c0e81ecc)
-  ![fizic1](https://github.com/user-attachments/assets/c6f4c356-8214-4f57-b3f9-76f8f2d82541)
-  ![hardware](https://github.com/user-attachments/assets/d33cf7d9-a5bb-46db-a74d-28ed6b2ee3d0)
-  ![hardware2](https://github.com/user-attachments/assets/02c327a1-f703-4692-a297-cd52c21e8635)
+  ![smartparking1](https://github.com/user-attachments/assets/0e360d2f-987c-45c9-b8f5-9964da4d5201)
+  ![smartparking2](https://github.com/user-attachments/assets/b3795b1d-cf74-4b49-bbac-3d157962018c)
+
 
 
 
@@ -99,9 +99,47 @@ The system is built using an Arduino UNO, which processes input signals from sen
     - Servo: For controlling the servo motor (available as Servo in the PlatformIO library registry).
     - LiquidCrystal_I2C: For controlling the LCD (available as LiquidCrystal_I2C in the PlatformIO library registry).
 
-# Results
--
+Software Flow:
+ - Initialization:
+   The serial communication is initialized to monitor the system's status in real-time.
+   The LCD screen is initialized and displays a welcoming message for 2 seconds.
+   The IR sensors are configured as input to detect vehicles, while the servo motor is attached and set to the initial position (closed gate).
+
+ - Main Logic:
+   The program checks the state of the IR sensors (IR1 and IR2) using interrupts. When a vehicle is detected:
+   IR1 triggers the vehicle entry action, where the parking slot count decreases and the barrier opens.
+   IR2 triggers the vehicle exit action, where the parking slot count increases and the barrier opens.
+   Debouncing is implemented to avoid multiple triggers from a single sensor activation.
+   The system keeps updating the LCD screen to display the number of available parking spots in real-time.
+
+ - Interrupts:
+   AttachInterrupt() is used to capture the IR sensor events with a delay to avoid false triggers.
+   The use of interrupts makes the system responsive without constantly polling sensor states, improving efficiency and minimizing the time taken to detect vehicle movements.
+
+ - Servo Control:
+   The servo motor is controlled using PWM signals to open and close the parking gate.
+   The servo is set to 0 degrees to open the gate and 80 degrees to close it.
+
+ - LCD Display:
+   The 16x2 LCD is updated to show real-time data about the number of parking slots left in the system.
+
+# Labs used
+- Lab 0 : The project uses GPIO pins for the PIR Sensors, the servo motor and the LCD.
+- Lab 1 : USART and Debugging : The code initializes serial communication with Serial.begin(9600), which allows the Arduino to communicate with the computer through the USB port for debugging.
+- Lab 2 : The project uses interrupts with the attachInterrupt() function to respond to changes in the state of the PIR Sensors.
+- Lab 3 : The project uses PWM for controlling the servo motor's position.
+
+# Video demo
+https://www.youtube.com/shorts/RFlBYcXbam8
 
 # Conclusions
--
+- This Smart Parking System successfully achieves its goal of automating parking space management using Arduino. The system allows for easy tracking of available parking spaces, automates vehicle entry and exit, and provides an intuitive user interface via the LCD display.
 
+# Project Journal
+- [04.12.2024]: Started the documentation.
+- [20.12.2024]: Hardware section update.
+- [08.01.2025]: Final updates.
+
+# Bibliography
+- https://www.mpja.com/download/31227sc.pdf
+- https://lastminuteengineers.com/pir-sensor-arduino-tutorial/
