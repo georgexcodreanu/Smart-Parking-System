@@ -126,7 +126,6 @@ Software Flow:
 # Labs used
 - Lab 0 : The project uses GPIO pins for the PIR Sensors, the servo motor and the LCD.
 - Lab 1 : USART and Debugging : The code initializes serial communication with Serial.begin(9600), which allows the Arduino to communicate with the computer through the USB port for debugging.
-- Lab 2 : The project uses interrupts with the attachInterrupt() function to respond to changes in the state of the PIR Sensors.
 - Lab 3 : The project uses PWM for controlling the servo motor's position.
 
 # Video demo
