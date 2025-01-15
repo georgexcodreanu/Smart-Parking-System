@@ -106,15 +106,11 @@ Software Flow:
    The IR sensors are configured as input to detect vehicles, while the servo motor is attached and set to the initial position (closed gate).
 
  - Main Logic:
-   The program checks the state of the IR sensors (IR1 and IR2) using interrupts. When a vehicle is detected:
+   The program checks the state of the IR sensors (IR1 and IR2). When a vehicle is detected:
    IR1 triggers the vehicle entry action, where the parking slot count decreases and the barrier opens.
    IR2 triggers the vehicle exit action, where the parking slot count increases and the barrier opens.
    Debouncing is implemented to avoid multiple triggers from a single sensor activation.
    The system keeps updating the LCD screen to display the number of available parking spots in real-time.
-
- - Interrupts:
-   AttachInterrupt() is used to capture the IR sensor events with a delay to avoid false triggers.
-   The use of interrupts makes the system responsive without constantly polling sensor states, improving efficiency and minimizing the time taken to detect vehicle movements.
 
  - Servo Control:
    The servo motor is controlled using PWM signals to open and close the parking gate.
@@ -129,7 +125,7 @@ Software Flow:
 - Lab 3 : The project uses PWM for controlling the servo motor's position.
 
 # Video demo
-https://www.youtube.com/shorts/RFlBYcXbam8
+[![Watch the video](http://img.youtube.com/vi/8Q2AVUzXbYk/0.jpg)](https://www.youtube.com/watch?v=8Q2AVUzXbYk "Watch the video")
 
 # Conclusions
 - This Smart Parking System successfully achieves its goal of automating parking space management using Arduino. The system allows for easy tracking of available parking spaces, automates vehicle entry and exit, and provides an intuitive user interface via the LCD display.
