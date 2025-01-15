@@ -13,8 +13,8 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 Servo myservo;
 
-const int IR1 = 3;
-const int IR2 = 2;
+const int IR1 = 2;
+const int IR2 = 3;
 
 int Slot = 2;
 int flag1 = 0;
@@ -22,7 +22,7 @@ int flag2 = 0;
 
 bool debounce(int pin) {
   if (digitalRead(pin) == HIGH) {
-    delay(50);
+    delay(500);
     if (digitalRead(pin) == HIGH) {
       return true;
     }
@@ -36,7 +36,7 @@ void setup() {
   pinMode(IR1, INPUT);
   pinMode(IR2, INPUT);
   myservo.attach(4);
-  myservo.write(70);
+  myservo.write(60);
 
   lcd.setCursor(0, 0);
   lcd.print("     ARDUINO    ");
@@ -52,34 +52,46 @@ void setup() {
 }
 
 void loop() {
-  if (debounce(IR1) && flag1 == 0) {
+  if (debounce(IR1)) {
     if (Slot > 0) {
       flag1 = 1;
       if (flag2 == 0) {
         myservo.write(0);
+        Serial.print("Ridica bariera pentru intrare: \n");
+        lcd.setCursor(0, 0);
+        lcd.print("    Intrare!    ");
         Slot = Slot - 1;
+        delay(3000);
+        myservo.write(60);
       }
     } else {
+      myservo.write(65);
       lcd.setCursor(0, 0);
       lcd.print("    SORRY    ");
       lcd.setCursor(0, 1);
       lcd.print("  Parking Full  ");
+      Serial.print("SORRY Parking Full \n");
       delay(3000);
       lcd.clear();
     }
   }
 
-  if (debounce(IR2) && flag2 == 0) {
+  if (Slot < 2 && debounce(IR2) && flag2 == 0) {
     flag2 = 1;
     if (flag1 == 0) {
-      myservo.write(0);
+      myservo.write(0);  
+      Serial.print("Ridica bariera pentru iesire: \n");
+      lcd.setCursor(0, 0);
+      lcd.print("    Iesire!    ");
       Slot = Slot + 1;
+      delay(5000);
+      myservo.write(60);
     }
   }
 
   if (flag1 == 1 && flag2 == 1) {
     delay(1000);
-    myservo.write(70);
+    myservo.write(60);
     flag1 = 0;
     flag2 = 0;
   }
@@ -89,4 +101,6 @@ void loop() {
   lcd.setCursor(0, 1);
   lcd.print("Slots Left: ");
   lcd.print(Slot);
+
+
 }
